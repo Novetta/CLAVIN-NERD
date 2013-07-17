@@ -36,9 +36,9 @@ public class NerdLocationExtractorTest {
 		
 		LocationOccurrence actualLocation = results.get(0);
 		
-		assertEquals(expectedLocation, actualLocation.text);
+		assertEquals(expectedLocation, actualLocation.getText());
 		
-		assertEquals(expectedLocationOffset, actualLocation.position);
+		assertEquals(expectedLocationOffset, actualLocation.getPosition());
 	}
 	
 	@Test
