@@ -12,7 +12,7 @@ import com.berico.clavin.extractor.LocationOccurrence;
 public class NerdLocationExtractorTest {
 
 	@Test
-	public void extractor_correctly_extracts_an_easily_found_location() throws Exception {
+	public void extractorCorrectlyExtractsAnEasilyFoundLocation() throws Exception {
 		
 		String text = "I went to Bolivia last week.";
 		
@@ -42,7 +42,7 @@ public class NerdLocationExtractorTest {
 	}
 	
 	@Test
-	public void extractEntityAtOffsets_correctly_extracts_text_at_the_specified_offsets(){
+	public void extractEntityAtOffsetsCorrectlyExtractsTextAtTheSpecifiedOffsets(){
 		
 		String text = "Get TARGET word.";
 		
@@ -52,4 +52,5 @@ public class NerdLocationExtractorTest {
 		
 		assertEquals(expected, actual);
 	}
+	
 }

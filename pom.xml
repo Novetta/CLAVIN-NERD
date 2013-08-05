@@ -4,7 +4,7 @@
 
   <groupId>com.berico</groupId>
   <artifactId>clavin-nerd</artifactId>
-  <version>0.4.1</version>
+  <version>0.4.2</version>
   <packaging>jar</packaging>
 
   <name>clavin-nerd</name>
@@ -46,7 +46,7 @@
 	<dependency>
 		<groupId>com.berico</groupId>
 		<artifactId>clavin</artifactId>
-		<version>0.4.1</version>
+		<version>0.4.2</version>
 	</dependency>
     <dependency>
       <groupId>junit</groupId>
