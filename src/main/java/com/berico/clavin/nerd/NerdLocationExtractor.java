@@ -75,7 +75,7 @@ public class NerdLocationExtractor implements LocationExtractor {
 					LocationOccurrence location 
 						= new LocationOccurrence(
 							extractEntityAtOffsets(text, result.second(), result.third()),
-							result.second());
+							Long.valueOf(result.second()));
 					
 					// Add it to the list of "found" locations.
 					extractedLocations.add(location);
