@@ -3,3 +3,10 @@ target/
 .project
 .DS_Store
 .settings/
+indexDirectory/**
+IndexDirectory/
+allCountries.zip
+allCountries.txt
+src/test/resources/evaluation
+Evaluator.java
+!.gitignore
