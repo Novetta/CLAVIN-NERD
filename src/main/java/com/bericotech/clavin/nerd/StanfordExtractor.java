@@ -75,7 +75,7 @@ public class StanfordExtractor implements LocationExtractor {
      * Stanford NER named entity recognizer with a specified 
      * language model.
      * 
-     * @param text                      path to Stanford NER language model
+     * @param NERmodel                      path to Stanford NER language model
      * @throws IOException 
      * @throws ClassNotFoundException 
      * @throws ClassCastException 

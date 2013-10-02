@@ -58,18 +58,18 @@
     </developer>    
   </developers>
 
-    <contributors>
-        <contributor>
-            <name>Richard Clayton</name>
-            <organization>Berico Technologies</organization>
-            <organizationUrl>http://bericotech.com</organizationUrl>
-        </contributor>
-        <contributor>
-            <name>Rahul Bhargava</name>
-            <organization>MIT Center for Civic Media</organization>
-            <organizationUrl>http://civic.mit.edu/</organizationUrl>
-        </contributor>
-    </contributors>
+  <contributors>
+    <contributor>
+      <name>Richard Clayton</name>
+      <organization>Berico Technologies</organization>
+      <organizationUrl>http://bericotech.com</organizationUrl>
+    </contributor>
+    <contributor>
+      <name>Rahul Bhargava</name>
+      <organization>MIT Center for Civic Media</organization>
+      <organizationUrl>http://civic.mit.edu/</organizationUrl>
+    </contributor>
+  </contributors>
 
   <scm>
     <connection>scm:git:https://github.com/Berico-Technologies/CLAVIN-NERD.git</connection>
@@ -102,10 +102,70 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>dist</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/distribution.xml</descriptor>
+              </descriptors>
+            </configuration> 
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12</version>
         <configuration>
           <argLine>-Xmx2g</argLine>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
