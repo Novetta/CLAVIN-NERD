@@ -18,17 +18,14 @@ Here's an example call to `GeoParserFactory` where we specify that the `Stanford
 
 ### Get it from Maven Central:
 
-**Coming Soon:** CLAVIN-NERD will also be distributed in binary form via the Maven Central Nexus repository. Once released, you will be able to obtain it by adding the following Maven dependency to your project's `pom.xml` file:
 
 ```xml
 <dependency>
     <groupId>com.bericotech</groupId>
     <artifactId>clavin-nerd</artifactId>
-    <version>1.0.0rc1</version>
+    <version>1.0.0rc3</version>
 </dependency>
 ```
-
-**Please Note:** The above Maven Central dependency is NOT YET ACTIVE.
 
 ## License:
 
