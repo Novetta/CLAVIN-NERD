@@ -82,8 +82,17 @@ public class StanfordExtractor implements LocationExtractor {
      */
     @SuppressWarnings("unchecked")
     public StanfordExtractor(String NERmodel) throws IOException, ClassCastException, ClassNotFoundException {
-        namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
-                CRFClassifier.getClassifier(NERmodel, System.getProperties());
+    	
+    	//namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
+        //        CRFClassifier.getClassifier(NERmodel, System.getProperties());
+
+       	//namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
+        //        CRFClassifier.getClassifier(new File(NERmodel));
+
+    	// Should this use "models/all.3class.distsim.prop" instead?
+    	namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
+                CRFClassifier.getJarClassifier("/models/all.3class.distsim.crf.ser.gz", System.getProperties());
+    	
 
         // populate set of demonyms to filter out from results, source:
         // http://en.wikipedia.org/wiki/List_of_adjectival_and_demonymic_forms_for_countries_and_nations
