@@ -3,9 +3,12 @@ package com.bericotech.clavin.nerd;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 
 import com.bericotech.clavin.extractor.LocationExtractor;
 import com.bericotech.clavin.extractor.LocationOccurrence;
@@ -67,7 +70,7 @@ public class StanfordExtractor implements LocationExtractor {
      * @throws ClassNotFoundException
      */
     public StanfordExtractor() throws ClassCastException, IOException, ClassNotFoundException {
-        this("src/main/resources/models/all.3class.distsim.crf.ser.gz");
+        this("all.3class.distsim.crf.ser.gz", "all.3class.distsim.prop" );
     }
     
     /**
@@ -76,28 +79,30 @@ public class StanfordExtractor implements LocationExtractor {
      * language model.
      * 
      * @param NERmodel                      path to Stanford NER language model
+     * @param NERprop						path to property file for Stanford NER language model
      * @throws IOException 
      * @throws ClassNotFoundException 
      * @throws ClassCastException 
      */
-    @SuppressWarnings("unchecked")
-    public StanfordExtractor(String NERmodel) throws IOException, ClassCastException, ClassNotFoundException {
+    //@SuppressWarnings("unchecked")
+    public StanfordExtractor(String NERmodel, String NERprop) throws IOException, ClassCastException, ClassNotFoundException {
     	
-    	//namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
-        //        CRFClassifier.getClassifier(NERmodel, System.getProperties());
-
-       	//namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
-        //        CRFClassifier.getClassifier(new File(NERmodel));
-
-    	// Should this use "models/all.3class.distsim.prop" instead?
+    	InputStream mpis = this.getClass().getClassLoader().getResourceAsStream("models/" + NERprop);
+    	Properties mp = new Properties();
+    	mp.load(mpis);
+    	
+       	
     	namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
-                CRFClassifier.getJarClassifier("/models/all.3class.distsim.crf.ser.gz", System.getProperties());
+                CRFClassifier.getJarClassifier("/models/" + NERmodel, mp);
+                		
     	
-
         // populate set of demonyms to filter out from results, source:
         // http://en.wikipedia.org/wiki/List_of_adjectival_and_demonymic_forms_for_countries_and_nations
         demonyms = new HashSet<String>();
-        BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Demonyms.txt"));  
+        // BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Demonyms.txt"));  
+        BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("Demonyms.txt")));
+        
+        
         String line = null;  
         while ((line = br.readLine()) != null)
             demonyms.add(line);

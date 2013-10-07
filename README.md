@@ -23,7 +23,7 @@ Here's an example call to `GeoParserFactory` where we specify that the `Stanford
 <dependency>
     <groupId>com.bericotech</groupId>
     <artifactId>clavin-nerd</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
