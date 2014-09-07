@@ -4,7 +4,7 @@
 
   <groupId>com.bericotech</groupId>
   <artifactId>clavin-nerd</artifactId>
-  <version>1.1-SNAPSHOT-20140218-2</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -17,6 +17,8 @@
   <description>CLAVIN-NERD is a GPL-licensed "wrapper project" that
   connects the Apache-licensed CLAVIN geoparser with the GPL-licensed
   Stanford CoreNLP NER entity extractor.</description>
+    <url>http://clavin.bericotechnologies.com</url>
+    <inceptionYear>2012</inceptionYear>
 
   <licenses>
     <license>
@@ -55,7 +57,7 @@
         <role>technical lead</role>
         <role>developer</role>
       </roles>
-    </developer>    
+    </developer>
   </developers>
 
   <contributors>
@@ -77,7 +79,7 @@
     <tag>master</tag>
     <url>https://github.com/Berico-Technologies/CLAVIN-NERD</url>
   </scm>
-  
+
   <mailingLists>
     <mailingList>
       <name>CLAVIN Users</name>
@@ -88,7 +90,7 @@
       <name>CLAVIN Developers</name>
       <post>clavin-developers@googlegroups.com</post>
       <archive>https://groups.google.com/forum/#!forum/clavin-developers</archive>
-    </mailingList>    
+    </mailingList>
   </mailingLists>
 
   <properties>
@@ -115,7 +117,7 @@
               <descriptors>
                 <descriptor>src/main/assembly/distribution.xml</descriptor>
               </descriptors>
-            </configuration> 
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -179,7 +181,7 @@
     <dependency>
       <groupId>com.bericotech</groupId>
       <artifactId>clavin</artifactId>
-      <version>1.1.0-20140217-1</version>
+      <version>2.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

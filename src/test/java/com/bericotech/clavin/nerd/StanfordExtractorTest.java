@@ -60,8 +60,8 @@ public class StanfordExtractorTest {
         String text = "I went to Bolivia last week.";
         List<LocationOccurrence> results = extractor.extractLocationNames(text);
         assertEquals("wrong number of entities extracted", 1, results.size());
-        assertEquals("incorrect entity extracted", "Bolivia", results.get(0).text);
-        assertEquals("wrong position of entity", text.indexOf("Bolivia"), results.get(0).position);
+        assertEquals("incorrect entity extracted", "Bolivia", results.get(0).getText());
+        assertEquals("wrong position of entity", text.indexOf("Bolivia"), results.get(0).getPosition());
     }
 
 }

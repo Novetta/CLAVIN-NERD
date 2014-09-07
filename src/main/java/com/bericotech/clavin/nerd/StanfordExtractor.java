@@ -135,7 +135,7 @@ public class StanfordExtractor implements LocationExtractor {
                             text.substring(extractedEntity.second(), extractedEntity.third()), 
                             extractedEntity.second());
                     // filter out demonyms
-                    if (!demonyms.contains(location.text))
+                    if (!demonyms.contains(location.getText()))
                         // add it to the list of extracted locations
                         extractedLocations.add(location);
                 }
