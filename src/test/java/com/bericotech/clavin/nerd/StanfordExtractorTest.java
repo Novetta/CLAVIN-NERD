@@ -83,7 +83,6 @@ public class StanfordExtractorTest {
         InputStream mpis = this.getClass().getClassLoader().getResourceAsStream("models/english.all.3class.distsim.prop");
         Properties mp = new Properties();
         mp.load(mpis);
-
         AbstractSequenceClassifier<CoreMap> namedEntityRecognizer =
                 CRFClassifier.getJarClassifier("/models/english.all.3class.distsim.crf.ser.gz", mp);
 
