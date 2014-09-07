@@ -1,22 +1,17 @@
 package com.bericotech.clavin.nerd;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Properties;
-
 import com.bericotech.clavin.extractor.LocationExtractor;
 import com.bericotech.clavin.extractor.LocationOccurrence;
-
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.Triple;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /*#####################################################################
  * 
@@ -57,10 +52,6 @@ public class StanfordExtractor implements LocationExtractor {
     // the actual named entity recognizer (NER) object
     private AbstractSequenceClassifier<CoreMap> namedEntityRecognizer;
     
-    // Stanford NER tends to mistake demonyms for place names, so we'll
-    // use this to filter them out from the results
-    private HashSet<String> demonyms;
-    
     /**
      * Default constructor. Instantiates a {@link StanfordExtractor}
      * with the standard English language model
@@ -90,23 +81,8 @@ public class StanfordExtractor implements LocationExtractor {
     	InputStream mpis = this.getClass().getClassLoader().getResourceAsStream("models/" + NERprop);
     	Properties mp = new Properties();
     	mp.load(mpis);
-    	
        	
-    	namedEntityRecognizer = (AbstractSequenceClassifier<CoreMap>) 
-                CRFClassifier.getJarClassifier("/models/" + NERmodel, mp);
-                		
-    	
-        // populate set of demonyms to filter out from results, source:
-        // http://en.wikipedia.org/wiki/List_of_adjectival_and_demonymic_forms_for_countries_and_nations
-        demonyms = new HashSet<String>();
-        // BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Demonyms.txt"));  
-        BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("Demonyms.txt")));
-        
-        
-        String line = null;  
-        while ((line = br.readLine()) != null)
-            demonyms.add(line);
-        br.close();
+    	namedEntityRecognizer = CRFClassifier.getJarClassifier("/models/" + NERmodel, mp);
     }
 
     /**
@@ -131,13 +107,9 @@ public class StanfordExtractor implements LocationExtractor {
                 // check if the entity is a "Location"
                 if (extractedEntity.first.equalsIgnoreCase("LOCATION")) {
                     // build a LocationOccurrence object
-                    LocationOccurrence location = new LocationOccurrence(
-                            text.substring(extractedEntity.second(), extractedEntity.third()), 
-                            extractedEntity.second());
-                    // filter out demonyms
-                    if (!demonyms.contains(location.getText()))
-                        // add it to the list of extracted locations
-                        extractedLocations.add(location);
+                    extractedLocations.add(new LocationOccurrence(
+                            text.substring(extractedEntity.second(), extractedEntity.third()),
+                            extractedEntity.second()));
                 }
             }
         }

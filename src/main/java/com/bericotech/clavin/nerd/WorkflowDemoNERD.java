@@ -1,13 +1,12 @@
 package com.bericotech.clavin.nerd;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import com.bericotech.clavin.GeoParser;
 import com.bericotech.clavin.GeoParserFactory;
 import com.bericotech.clavin.resolver.ResolvedLocation;
 import com.bericotech.clavin.util.TextUtils;
+
+import java.io.File;
+import java.util.List;
 
 /*#####################################################################
  * 
