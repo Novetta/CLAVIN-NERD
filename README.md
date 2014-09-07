@@ -2,13 +2,13 @@
 --------------
 CLAVIN-NERD is a GPL-licensed "wrapper project" that connects the Apache-licensed [CLAVIN](https://github.com/Berico-Technologies/CLAVIN) geoparser with the GPL-licensed [Stanford CoreNLP NER](http://nlp.stanford.edu/software/corenlp.shtml) entity extractor.
 
-Using CLAVIN with Stanford NER (i.e., the CLAVIN-NERD distribution) results in significantly higher accuracy than with the default Apache OpenNLP NameFinder entity extractor. We recommend using CLAVIN-NERD for any production applications. Stanford NER is not included as the default entity extractor in the standard CLAVIN release because Stanford NER is GPL-licensed, while we are committed to distributing CLAVIN itself via the Apache License. Thus, the GPL-licensed CLAVIN-NERD distribution makes CLAVIN available for use in its optimal form (that is, working with Stanford NER) while preserving the freedom of the core CLAVIN source code under the terms of the Apache License.
+Using CLAVIN with Stanford NER (i.e., the CLAVIN-NERD distribution) results in significantly higher accuracy than with the default Apache OpenNLP NameFinder entity extractor. We recommend using CLAVIN-NERD in all GPL-compliant production applications. Stanford NER is not included as the default entity extractor in the standard CLAVIN release because Stanford NER is GPL-licensed, while we are committed to distributing CLAVIN itself via the Apache License. Thus, the GPL-licensed CLAVIN-NERD distribution makes CLAVIN available for use in its optimal form (that is, working with Stanford NER) while preserving the freedom of the core CLAVIN source code under the terms of the Apache License.
 
 ## How to use CLAVIN-NERD:
 
 Please refer to the [instructions for getting started with CLAVIN](https://github.com/Berico-Technologies/CLAVIN) before attempting to work with CLAVIN-NERD. In particular, you must download the [GeoNames.org](http://www.geonames.org/) gazetteer and build the corresponding Lucene index for CLAVIN before using CLAVIN-NERD.
 
-Once you've used CLAVIN to build the required Lucene index from the GeoNames.org gazetteer, consult `WorkflowDemoNERD.java` for an example of how to use CLAVIN-NERD. The main difference between using CLAVIN and CLAVIN-NERD is in the arguments passed to the `GeoParserFactory` class to instantiate a `GeoParser` object. With CLAVIN-NERD, we need to specify that we want to use the `StanfordExtractor` to extract location names from text.
+Once you've used CLAVIN to build the required Lucene index from the GeoNames.org gazetteer, consult `WorkflowDemoNERD.java` for multiple examples of different ways to use CLAVIN-NERD. The main difference between using CLAVIN and CLAVIN-NERD is in the arguments passed to the `GeoParserFactory` class to instantiate a `GeoParser` object. With CLAVIN-NERD, we need to specify that we want to use the `StanfordExtractor` to extract location names from text.
 
 Here's an example call to `GeoParserFactory` where we specify that the `StanfordExtractor` should be used, as seen in the `WorkflowDemoNERD` class:
 
@@ -23,7 +23,7 @@ Here's an example call to `GeoParserFactory` where we specify that the `Stanford
 <dependency>
     <groupId>com.bericotech</groupId>
     <artifactId>clavin-nerd</artifactId>
-    <version>1.0.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
