@@ -216,14 +216,6 @@
             <name>Maven Repository Switchboard</name>
             <url>http://repo1.maven.org/maven2</url>
         </repository>
-        <repository>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>github</id>
-            <name>Github Test Repo</name>
-            <url>https://github.com/berico-tpinney/clavin-test-repo/raw/master/snapshots/</url>
-        </repository>
     </repositories>
 
     <pluginRepositories>
