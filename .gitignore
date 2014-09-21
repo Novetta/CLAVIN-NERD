@@ -5,6 +5,8 @@ target/
 .settings/
 indexDirectory/**
 IndexDirectory/
+.idea
+clavin-nerd.iml
 allCountries.zip
 allCountries.txt
 src/test/resources/evaluation
