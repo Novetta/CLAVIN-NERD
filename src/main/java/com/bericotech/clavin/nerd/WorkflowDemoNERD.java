@@ -58,11 +58,11 @@ import static com.bericotech.clavin.nerd.StanfordExtractor.convertNERtoCLAVIN;
 public class WorkflowDemoNERD {
 
     /**
-     * Run this after installing & configuring CLAVIN to get a sense of
+     * Run this after installing and configuring CLAVIN to get a sense of
      * how to use it in a few different ways.
      * 
      * @param args              not used
-     * @throws Exception
+     * @throws Exception		Error by contract
      */
     public static void main(String[] args) throws Exception {
         
@@ -76,7 +76,7 @@ public class WorkflowDemoNERD {
 
     /**
      * Standard usage of CLAVIN. Instantiate a default GeoParser, give
-     * it some text, check out the locations it extracts & resolves.
+     * it some text, check out the locations it extracts and resolves.
      *
      * @throws Exception
      */

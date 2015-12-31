@@ -56,9 +56,9 @@ public class StanfordExtractor implements LocationExtractor {
      * Default constructor. Instantiates a {@link StanfordExtractor}
      * with the standard English language model
      * 
-     * @throws ClassCastException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws ClassCastException			Error by contract
+     * @throws IOException					Error by contract
+     * @throws ClassNotFoundException		Error by contract
      */
     public StanfordExtractor() throws ClassCastException, IOException, ClassNotFoundException {
         this("english.all.3class.distsim.crf.ser.gz", "english.all.3class.distsim.prop" );
@@ -71,9 +71,9 @@ public class StanfordExtractor implements LocationExtractor {
      * 
      * @param NERmodel                      path to Stanford NER language model
      * @param NERprop						path to property file for Stanford NER language model
-     * @throws IOException 
-     * @throws ClassNotFoundException 
-     * @throws ClassCastException 
+     * @throws IOException 					Error by contract
+     * @throws ClassNotFoundException 		Error by contract
+     * @throws ClassCastException 			Error by contract
      */
     //@SuppressWarnings("unchecked")
     public StanfordExtractor(String NERmodel, String NERprop) throws IOException, ClassCastException, ClassNotFoundException {
@@ -102,9 +102,9 @@ public class StanfordExtractor implements LocationExtractor {
     /**
      * Converts output from Stanford NER to input required by CLAVIN resolver.
      *
-     * @param entities  List<Triple<String, Integer, Integer>> from Stanford NER
+     * @param entities  A List&lt;Triple&lt;String, Integer, Integer&gt;&gt; from Stanford NER
      * @param text      text content processed by Stanford NER + CLAVIN resolver
-     * @return          List<LocationOccurrence> used by CLAVIN resolver
+     * @return          List&lt;LocationOccurrence&gt; used by CLAVIN resolver
      */
     public static List<LocationOccurrence> convertNERtoCLAVIN
             (List<Triple<String, Integer, Integer>> entities, String text) {
