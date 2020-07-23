@@ -3,3 +3,12 @@ target/
 .project
 .DS_Store
 .settings/
+indexDirectory/**
+IndexDirectory/
+.idea
+clavin-nerd.iml
+allCountries.zip
+allCountries.txt
+src/test/resources/evaluation
+Evaluator.java
+!.gitignore
