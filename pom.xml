@@ -2,22 +2,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bericotech</groupId>
+    <groupId>com.novetta</groupId>
     <artifactId>clavin-nerd</artifactId>
     <version>3.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
 
     <name>clavin-nerd</name>
     <description>CLAVIN-NERD is a GPL-licensed "wrapper project" that
         connects the Apache-licensed CLAVIN geoparser with the GPL-licensed
         Stanford CoreNLP NER entity extractor.</description>
-    <url>http://clavin.bericotechnologies.com</url>
+    <url>https://opensource.novetta.com</url>
     <inceptionYear>2012</inceptionYear>
 
     <licenses>
@@ -29,75 +23,18 @@
     </licenses>
 
     <organization>
-        <name>Berico Technologies</name>
-        <url>http://bericotech.com</url>
+        <name>Novetta</name>
+        <url>https://www.novetta.com</url>
     </organization>
 
-    <developers>
-          <developer>
-            <id>jglesner</id>
-            <name>Jeremy Glesner</name>
-            <email>jglesner@bericotechnologies.com</email>
-            <url>https://github.com/jglesner</url>
-            <organization>Berico Technologies</organization>
-            <organizationUrl>http://bericotech.com</organizationUrl>
-            <roles>
-                <role>technical lead</role>
-                <role>developer</role>
-            </roles>
-        </developer> 
-        <developer>
-            <id>charlieg</id>
-            <name>Charlie Greenbacker</name>
-            <url>https://github.com/charlieg</url>
-            <roles>
-                <role>product owner emeritus</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>berico-tpinney</id>
-            <name>Travis Pinney</name>
-            <url>https://github.com/berico-tpinney</url>
-            <roles>
-                <role>technical lead emeritus</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <contributors>
-        <contributor>
-            <name>Richard Clayton</name>
-            <organization>Berico Technologies</organization>
-            <organizationUrl>http://bericotech.com</organizationUrl>
-        </contributor>
-        <contributor>
-            <name>Rahul Bhargava</name>
-            <organization>MIT Center for Civic Media</organization>
-            <organizationUrl>http://civic.mit.edu/</organizationUrl>
-        </contributor>
-    </contributors>
+  
 
     <scm>
-        <connection>scm:git:git@github.com:Berico-Technologies/CLAVIN-NERD.git</connection>
-        <developerConnection>scm:git:git@github.com:Berico-Technologies/CLAVIN-NERD.git</developerConnection>
-        <url>scm:git:git@github.com:Berico-Technologies/CLAVIN-NERD</url>
+        <connection>scm:git:git@github.com:Novetta/CLAVIN-NERD.git</connection>
+        <developerConnection>scm:git:git@github.com:Novetta/CLAVIN-NERD.git</developerConnection>
+        <url>scm:git:git@github.com:Novetta/CLAVIN-NERD</url>
         <tag>HEAD</tag>
     </scm>
-
-    <mailingLists>
-        <mailingList>
-            <name>CLAVIN Users</name>
-            <post>clavin-users@googlegroups.com</post>
-            <archive>https://groups.google.com/forum/#!forum/clavin-users</archive>
-        </mailingList>
-        <mailingList>
-            <name>CLAVIN Developers</name>
-            <post>clavin-developers@googlegroups.com</post>
-            <archive>https://groups.google.com/forum/#!forum/clavin-developers</archive>
-        </mailingList>
-    </mailingLists>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -253,12 +190,26 @@
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
-            <version>3.4.1</version>
+            <version>4.2.0</version>
+            <exclusions>
+            	<exclusion>
+	            	<groupId>org.apache.lucene</groupId>
+					<artifactId>lucene-queryparser</artifactId>
+            	</exclusion>
+            	<exclusion>
+					<groupId>org.apache.lucene</groupId>
+					<artifactId>lucene-analyzers-common</artifactId>
+            	</exclusion>
+            	<exclusion>
+					<groupId>org.apache.lucene</groupId>
+					<artifactId>lucene-core</artifactId>
+            	</exclusion>            	
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.bericotech</groupId>
-            <artifactId>clavin</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>com.novetta</groupId>
+            <artifactId>CLAVIN</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -275,13 +226,51 @@
         </snapshotRepository>
     </distributionManagement>
 
-<!--     <distributionManagement> -->
-<!--         <snapshotRepository> -->
-<!--             <id>berico-internal-snapshot</id> -->
-<!--             <name>Berico Internal Snapshots</name> -->
-<!--             <url>http://nexus.bericotechnologies.com/content/repositories/internal-snapshots</url> -->
-<!--         </snapshotRepository> -->
-<!--     </distributionManagement> -->
+  <developers>
+          <developer>
+            <id>jglesner</id>
+            <name>Jeremy Glesner</name>
+            <email>jglesner@bericotechnologies.com</email>
+            <url>https://github.com/jglesner</url>
+            <organization>Berico Technologies</organization>
+            <organizationUrl>http://bericotech.com</organizationUrl>
+            <roles>
+                <role>technical lead</role>
+                <role>developer</role>
+            </roles>
+        </developer> 
+        <developer>
+            <id>charlieg</id>
+            <name>Charlie Greenbacker</name>
+            <url>https://github.com/charlieg</url>
+            <roles>
+                <role>product owner emeritus</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>berico-tpinney</id>
+            <name>Travis Pinney</name>
+            <url>https://github.com/berico-tpinney</url>
+            <roles>
+                <role>technical lead emeritus</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+            <name>Richard Clayton</name>
+            <organization>Berico Technologies</organization>
+            <organizationUrl>http://bericotech.com</organizationUrl>
+        </contributor>
+        <contributor>
+            <name>Rahul Bhargava</name>
+            <organization>MIT Center for Civic Media</organization>
+            <organizationUrl>http://civic.mit.edu/</organizationUrl>
+        </contributor>
+    </contributors>
 
     <repositories>
         <repository>
@@ -309,7 +298,7 @@
     </pluginRepositories>
 
     <issueManagement>
-        <url>https://github.com/Berico-Technologies/CLAVIN-NERD/issues</url>
+        <url>https://github.com/Novetta/CLAVIN/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
