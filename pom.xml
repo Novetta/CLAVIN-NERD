@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bericotech</groupId>
+    <groupId>com.novetta</groupId>
     <artifactId>clavin-nerd</artifactId>
     <version>3.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -17,7 +17,7 @@
     <description>CLAVIN-NERD is a GPL-licensed "wrapper project" that
         connects the Apache-licensed CLAVIN geoparser with the GPL-licensed
         Stanford CoreNLP NER entity extractor.</description>
-    <url>http://clavin.bericotechnologies.com</url>
+    <url>https://opensource.novetta.com</url>
     <inceptionYear>2012</inceptionYear>
 
     <licenses>
@@ -29,8 +29,8 @@
     </licenses>
 
     <organization>
-        <name>Berico Technologies</name>
-        <url>http://bericotech.com</url>
+        <name>Novetta</name>
+        <url>https://www.novetta.com</url>
     </organization>
 
     <developers>
@@ -253,11 +253,11 @@
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
-            <version>3.4.1</version>
+            <version>4.2.0</version>
         </dependency>
         <dependency>
-            <groupId>com.bericotech</groupId>
-            <artifactId>clavin</artifactId>
+            <groupId>com.novetta</groupId>
+            <artifactId>CLAVIN</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -309,7 +309,7 @@
     </pluginRepositories>
 
     <issueManagement>
-        <url>https://github.com/Berico-Technologies/CLAVIN-NERD/issues</url>
+        <url>https://github.com/Novetta/CLAVIN/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
