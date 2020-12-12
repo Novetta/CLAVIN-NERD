@@ -5,6 +5,7 @@
     <groupId>com.novetta</groupId>
     <artifactId>CLAVIN-nerd</artifactId>
     <version>3.0.0-SNAPSHOT</version>
+
     <packaging>jar</packaging>
 
     <name>clavin-nerd</name>
