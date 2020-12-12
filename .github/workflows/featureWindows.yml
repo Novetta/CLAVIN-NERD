@@ -27,5 +27,5 @@ jobs:
         unzip allCountries.zip 
         mvn -B clean package 
         mvn exec:java '-Dexec.mainClass="com.novetta.clavin.index.IndexDirectoryBuilder"'
-        mvn exec:java -Dexec.mainClass="com.novetta.clavin.nerd.WorkflowDemoNERD"
+        mvn exec:java '-Dexec.mainClass="com.novetta.clavin.nerd.WorkflowDemoNERD"'
 
