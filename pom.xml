@@ -4,7 +4,7 @@
 
     <groupId>com.novetta</groupId>
     <artifactId>CLAVIN-nerd</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
 
     <packaging>jar</packaging>
 
@@ -345,7 +345,7 @@
 
   	<profiles>
         <profile>
-            <id>release-tasks</id>
+            <id>release</id>
             <activation>
                 <!-- mvn release:perform sets this to true -->
                 <property>
