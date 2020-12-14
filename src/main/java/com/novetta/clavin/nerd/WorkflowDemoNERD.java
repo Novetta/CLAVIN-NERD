@@ -1,25 +1,26 @@
-package com.bericotech.clavin.nerd;
+package com.novetta.clavin.nerd;
 
-import com.bericotech.clavin.ClavinException;
-import com.bericotech.clavin.GeoParser;
-import com.bericotech.clavin.GeoParserFactory;
-import com.bericotech.clavin.extractor.LocationOccurrence;
-import com.bericotech.clavin.gazetteer.query.LuceneGazetteer;
-import com.bericotech.clavin.resolver.ClavinLocationResolver;
-import com.bericotech.clavin.resolver.ResolvedLocation;
-import com.bericotech.clavin.util.TextUtils;
+import com.novetta.clavin.ClavinException;
+import com.novetta.clavin.GeoParser;
+import com.novetta.clavin.GeoParserFactory;
+import com.novetta.clavin.extractor.LocationOccurrence;
+import com.novetta.clavin.gazetteer.query.LuceneGazetteer;
+import com.novetta.clavin.resolver.ClavinLocationResolver;
+import com.novetta.clavin.resolver.ResolvedLocation;
+import com.novetta.clavin.util.TextUtils;
+
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.Triple;
+
+import static com.novetta.clavin.nerd.StanfordExtractor.convertNERtoCLAVIN;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
-
-import static com.bericotech.clavin.nerd.StanfordExtractor.convertNERtoCLAVIN;
 
 /*#####################################################################
  * 
@@ -56,6 +57,8 @@ import static com.bericotech.clavin.nerd.StanfordExtractor.convertNERtoCLAVIN;
  * 
  */
 public class WorkflowDemoNERD {
+	private static final String INDEX_DIR = "./IndexDirectory";
+	//private static final String INDEX_DIR = "../CLAVIN/IndexDirectory";
 
     /**
      * Run this after installing and configuring CLAVIN to get a sense of
@@ -82,7 +85,7 @@ public class WorkflowDemoNERD {
      */
     private static void getparseArticle() throws Exception {
         // Instantiate a CLAVIN GeoParser using the StanfordExtractor
-        GeoParser parser = GeoParserFactory.getDefault("./IndexDirectory", new StanfordExtractor(), 1, 1, false);
+        GeoParser parser = GeoParserFactory.getDefault(INDEX_DIR, new StanfordExtractor(), 1, 1, false);
         
         // Unstructured text file about Somalia to be geoparsed
         File inputFile = new File("src/test/resources/sample-docs/Somalia-doc.txt");
@@ -108,7 +111,12 @@ public class WorkflowDemoNERD {
      */
     private static void geoparseUppercaseArticle() throws Exception {
         // Instantiate a CLAVIN GeoParser using the StanfordExtractor with "caseless" models
-        GeoParser parser = GeoParserFactory.getDefault("./IndexDirectory", new StanfordExtractor("english.all.3class.caseless.distsim.crf.ser.gz", "english.all.3class.caseless.distsim.prop"), 1, 1, false);
+        GeoParser parser = GeoParserFactory.getDefault(
+        		INDEX_DIR,
+        		new StanfordExtractor(
+        				"english.all.3class.caseless.distsim.crf.ser.gz",
+        				"english.all.3class.caseless.distsim.prop"
+        		), 1, 1, false);
         
         // Unstructured uppercase text file about Somalia to be geoparsed
         File inputFile = new File("src/test/resources/sample-docs/Somalia-doc-uppercase.txt");
@@ -133,8 +141,10 @@ public class WorkflowDemoNERD {
      *
      * @throws IOException
      * @throws ClavinException
+     * @throws ClassNotFoundException 
+     * @throws ClassCastException 
      */
-    private static void resolveStanfordEntities() throws IOException, ClavinException {
+    private static void resolveStanfordEntities() throws IOException, ClavinException, ClassNotFoundException {
 
         /*#####################################################################
          *
@@ -147,7 +157,7 @@ public class WorkflowDemoNERD {
         Properties mp = new Properties();
         mp.load(mpis);
         AbstractSequenceClassifier<CoreMap> namedEntityRecognizer =
-                CRFClassifier.getJarClassifier("/models/english.all.3class.distsim.crf.ser.gz", mp);
+                CRFClassifier.getClassifier("models/english.all.3class.distsim.crf.ser.gz", mp);
 
         // Unstructured text file about Somalia to be geoparsed
         File inputFile = new File("src/test/resources/sample-docs/Somalia-doc.txt");
@@ -168,7 +178,7 @@ public class WorkflowDemoNERD {
         List<LocationOccurrence> locationsForCLAVIN = convertNERtoCLAVIN(entitiesFromNER, inputString);
 
         // instantiate the CLAVIN location resolver
-        ClavinLocationResolver clavinLocationResolver = new ClavinLocationResolver(new LuceneGazetteer(new File("./IndexDirectory")));
+        ClavinLocationResolver clavinLocationResolver = new ClavinLocationResolver(new LuceneGazetteer(new File(INDEX_DIR)));
 
         // resolve location entities extracted from input text
         List<ResolvedLocation> resolvedLocations = clavinLocationResolver.resolveLocations(locationsForCLAVIN, 1, 1, false);

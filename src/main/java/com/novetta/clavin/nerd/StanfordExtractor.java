@@ -28,10 +28,8 @@
  *
  *###################################################################*/
 
-package com.bericotech.clavin.nerd;
+package com.novetta.clavin.nerd;
 
-import com.bericotech.clavin.extractor.LocationExtractor;
-import com.bericotech.clavin.extractor.LocationOccurrence;
 import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.util.CoreMap;
@@ -42,6 +40,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import com.novetta.clavin.extractor.LocationExtractor;
+import com.novetta.clavin.extractor.LocationOccurrence;
 
 /**
  * Extracts location names from unstructured text documents using a
@@ -60,7 +61,7 @@ public class StanfordExtractor implements LocationExtractor {
      * @throws IOException					Error by contract
      * @throws ClassNotFoundException		Error by contract
      */
-    public StanfordExtractor() throws ClassCastException, IOException, ClassNotFoundException {
+    public StanfordExtractor() throws IOException, ClassNotFoundException {
         this("english.all.3class.distsim.crf.ser.gz", "english.all.3class.distsim.prop" );
     }
     
@@ -76,13 +77,12 @@ public class StanfordExtractor implements LocationExtractor {
      * @throws ClassCastException 			Error by contract
      */
     //@SuppressWarnings("unchecked")
-    public StanfordExtractor(String NERmodel, String NERprop) throws IOException, ClassCastException, ClassNotFoundException {
+    public StanfordExtractor(String NERmodel, String NERprop) throws IOException, ClassNotFoundException {
     	
     	InputStream mpis = this.getClass().getClassLoader().getResourceAsStream("models/" + NERprop);
     	Properties mp = new Properties();
     	mp.load(mpis);
-       	
-    	namedEntityRecognizer = CRFClassifier.getJarClassifier("/models/" + NERmodel, mp);
+    	namedEntityRecognizer = CRFClassifier.getClassifier("models/" + NERmodel, mp);
     }
 
     /**
@@ -109,7 +109,7 @@ public class StanfordExtractor implements LocationExtractor {
     public static List<LocationOccurrence> convertNERtoCLAVIN
             (List<Triple<String, Integer, Integer>> entities, String text) {
 
-        List<LocationOccurrence> locations = new ArrayList<LocationOccurrence>();
+        List<LocationOccurrence> locations = new ArrayList<>();
 
         if (entities != null) {
             // iterate over each entity Triple
