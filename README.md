@@ -12,6 +12,8 @@ CLAVIN-NERD is a GPL-licensed "wrapper project" that connects the Apache-license
 
 Using CLAVIN with Stanford NER (i.e., the CLAVIN-NERD distribution) results in significantly higher accuracy than with the default Apache OpenNLP NameFinder entity extractor. We recommend using CLAVIN-NERD or Novetta's [AdaptNLP](https://github.com/Novetta/adaptnlp) over OpenNLP. Stanford NER is not included in the standard CLAVIN release because Stanford NER is GPL-licensed and we are committed to distributing CLAVIN itself via the Apache License. Thus, the GPL-licensed CLAVIN-NERD distribution makes CLAVIN available for use with Stanford NER while preserving the freedom of the core CLAVIN source code under the terms of the Apache License.
 
+Novetta also maintains the [CLAVIN-Rest](https://github.com/novetta/clavin-rest) project, which provides a RESTful microservice wrapper around [CLAVIN](https://github.com/Novetta/CLAVIN) or CLAVIN-NERD.  To use CLAVIN-NERD with CLAVIN-Rest, you simply have to edit the CLAVIN-Rest POM.  CLAVIN-Rest is configured (and provides instructions) to easily build and run this package as a docker image. 
+
 ## Breaking changes
 
 This release includes breaking changes in the form of an update to all namespaces.  The namespaces have been changed from com.bericotech to com.novetta which reflects a change in corporate ownership, and re-alignment to our new domain. 
