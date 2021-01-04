@@ -67,8 +67,7 @@ public class StanfordExtractorTest {
         String text = "I went to Bolivia last week.";
         List<LocationOccurrence> results = extractor.extractLocationNames(text);
         assertEquals("wrong number of entities extracted", 1, results.size());
-        assertEquals("incorrect entity extracted", "Bolivia", results.get(0).getText());
-        assertEquals("wrong position of entity", text.indexOf("Bolivia"), results.get(0).getPosition());
+        testLocationOccurancePosition(text, "Bolivia", results.get(0));
     }
 
     /**
@@ -93,10 +92,16 @@ public class StanfordExtractorTest {
 
         List<LocationOccurrence> locationsForCLAVIN = convertNERtoCLAVIN(entitiesFromNER, text);
         assertEquals("wrong number of entities", 2, locationsForCLAVIN.size());
-        assertEquals("wrong text for first entity", "Springfield", locationsForCLAVIN.get(0).getText());
-        assertEquals("wrong position for first entity", 14, locationsForCLAVIN.get(0).getPosition());
-        assertEquals("wrong text for second entity", "Boston", locationsForCLAVIN.get(1).getText());
-        assertEquals("wrong position for second entity", 41, locationsForCLAVIN.get(1).getPosition());
+        testLocationOccurancePosition(text, "Springfield", locationsForCLAVIN.get(0));
+        testLocationOccurancePosition(text, "Boston", locationsForCLAVIN.get(1));
     }
-
+    
+    
+    private void testLocationOccurancePosition(String text, String expectedString, LocationOccurrence match) {
+    	int expectedStartOffset = text.indexOf(expectedString);
+    	int expectedEndOffset = expectedStartOffset + expectedString.length();
+    	assertEquals("incorrect entity extracted", expectedString, match.getText());
+    	assertEquals("wrong start position of entity", expectedStartOffset, match.getStartOffset());
+    	assertEquals("wrong start position of entity", expectedEndOffset, match.getEndOffset());
+    }
 }

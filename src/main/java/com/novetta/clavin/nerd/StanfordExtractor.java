@@ -117,7 +117,7 @@ public class StanfordExtractor implements LocationExtractor {
                 // check if the entity is a "Location"
                 if (entity.first.equalsIgnoreCase("LOCATION")) {
                     // build a LocationOccurrence object
-                    locations.add(new LocationOccurrence(text.substring(entity.second, entity.third), entity.second));
+                    locations.add(new LocationOccurrence(text.substring(entity.second, entity.third), entity.second, entity.third));
                 }
             }
         }
